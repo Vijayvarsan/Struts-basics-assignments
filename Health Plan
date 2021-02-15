@@ -1,1 +1,70 @@
+.................index.jsp...........................
+<html>
+<body>
+
+	<form action="submit">
+	
+		Enter Employee-Name: <input type="text" name="name"><br>
+		Enter Employee-ID: <input type="text" name="id"><br>	
+<!-- 		Select Health Plan:	 -->
+<!-- 		<label><input type="radio" name="tag">Blue-cross</label> -->
+<!-- 		<label><input type="radio" name="tag">Red-cross</label> -->
+<!-- 		<label><input type="radio" name="tag">Black-Diamond</label><br> -->
+		
+		<label for="cars">Select a plan:</label>
+			<select id="plans" name="plans">
+  				<option value="B-C">Nlue-cross</option>
+  				<option value="R-C">Red-cross</option>
+  				<option value="B-D">Black ssDiamond</option>
+			</select>	
+			</br>
+					<input type="button" value="submit">
+			
+	</form>
+
+
+</body>
+</html>
+
+..................................Controller.java....................
+package com.wipro;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class Pro4Controller {
+	@RequestMapping("/submit")
+	public String getdetails(HttpServletRequest request , HttpServletResponse response) {
+		
+		
+		String a=request.getParameter("name");
+		int b=Integer.parseInt(request.getParameter("id"));
+		
+		
+		if(a.equals("vj") && b==101) {
+			return "ThanksPage.jsp";
+		}
+		else {
+			return "index.jsp";
+		}
+		}
+}
+...........................view.jsp............................
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+.........Thanks for signing up...........
+</body>
+</html>
 
