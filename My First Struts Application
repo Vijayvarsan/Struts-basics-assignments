@@ -1,1 +1,98 @@
+..................................Index.jsp page..................
 
+<html>
+<body>
+	<form action="detail">
+		Enter user name:<input type="text" name="name"><br>
+		Enter Address : <input type="text" name="add"><br>
+		Enter email :<input type="email" name="mail"><br>
+		Enter mobile-num: <input type="number" name="mob"><br>
+		<input type="submit" value="submit">
+
+	</form></body>
+</html>
+
+.............................Page Controller.java................................
+
+package com.wipro;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class PageController {
+	@RequestMapping("/detail")
+	public ModelAndView control(HttpServletRequest request,HttpServletResponse response) {
+	
+		String a=request.getParameter("name");
+		String b=request.getParameter("add");
+		String c=request.getParameter("mail");
+		String d=request.getParameter("mob");
+
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("View.jsp");
+		mv.addObject("name",a);
+		mv.addObject("add",b);
+		mv.addObject("mail",c);
+		mv.addObject("mob",d);
+		return mv;
+	
+	}
+}
+
+
+...................................View .jsp.........................
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1 style="color:red" > Hello  <%=request.getAttribute("name")%> </h1>
+<h2 style="color:blue" >This is my first struts application </h2>
+
+ <style> 
+   table,th,tr,td{ 
+     border-collapse: collapse; 
+     border-spacing: 0;
+  } 
+   table,th,tr,td {
+    border: 1px solid black;
+   text-align: center
+   } 
+    
+ </style> 
+<table style="width:100%">
+
+<tr>
+
+<th> no</th>
+<th> Name</th>
+<th> Address</th>
+<th> E-mail</th>
+<th> Mob-Num</th>
+</tr>
+
+
+<tr>
+
+<td> 1</td>
+<td> <%=request.getAttribute("name")%></td>
+<td><%=request.getAttribute("add")%></td>
+<td><%=request.getAttribute("mail")%></td>
+<td> <%=request.getAttribute("mob")%></td>
+</tr>
+
+</table>
+
+</body>
+</html>
